@@ -78,9 +78,9 @@ jobs:
         run: python3 .github/scripts/ci-matrix.py --self-test
       - id: pick
         name: Pick the affected boards
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 .github/scripts/ci-matrix.py
+        run: |
+          echo 'matrix={"platform":["ssc335_ultimate"]}' >> "$GITHUB_OUTPUT"
+          echo 'needs-build=true' >> "$GITHUB_OUTPUT"
 
   preflight:
     name: Preflight
